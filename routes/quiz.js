@@ -34,7 +34,7 @@ exports.postQuiz = function(req, res) {
 	var scenarios = [];
 
 	for (var i=0; i<behaviors.length; i++) {
-		scenarios.push(allScenarios[i]);
+		scenarios.push(allScenarios[behaviors[i]]);
 	}
 
 	var results = [];
@@ -104,16 +104,20 @@ exports.postSurvey = function (req, res) {
 		}
 
 		for (var i=0; i<choices.length; i++) {
-			console.log(choices[i]);
-			if (choices[i] == "depends" || "healthy") {
+			// console.log(choices[i]);
+			if (choices[i] == "depends") {
+				console.log(choices[i]);
 				results.push([response[0].stories[i], response[0].results[i]]);
-			} else {
-				console.log("meow");
-				continue
+			} else if (choices[i] == "healthy") {
+				console.log(choices[i]);
+				results.push([response[0].stories[i], response[0].results[i]]);
 			}
+
+
 		}
 
-		res.send(results);
+		res.render('results', {title: "Results", results: results});
+		
 	});
 
 
