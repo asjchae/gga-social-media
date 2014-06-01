@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  p Select the behaviors that cause you to be concerned for your friend.
+
+  form(action='/post-quiz', method='post', id='quiz-generator')
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='0')
+        | My friend’s significant other gets jealous easily and always checks up on my friend to see what they are doing
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='1')
+        | My friend spends all of their time with their significant other and does not make time for their friends or family anymore
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='2')
+        | My friend’s significant other makes fun of or embarrasses my friend in front of other people
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='3')
+        | My friend’s significant other doesn’t respect my friend’s opinion
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='4')
+        | My friend’s significant other pressures my friend to have sex or to engage in sexual activity that they are uncomfortable with
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='5')
+        | My friend’s significant other is controlling
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='6')
+        | My friend’s significant other threatens to hurt my friend or themselves if they don’t get what they want
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='7')
+        | My friend’s significant other uses angry or threatening gestures to intimidate my friend
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='8')
+        | My friend has cuts, bruises or other signs of physical harm that they hide from others
+    .checkbox
+      label
+        input(type='checkbox', name='behaviors', value='9')
+        | My friend’s significant other constantly tells my friend that they aren’t good enough
+    br
+    input(type='submit', value='Submit')

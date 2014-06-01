@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  form(action='/post-survey/'+id, method='post', id='survey')
+    each story, i in scenarios
+      p #{story}
+      br
+      .radio
+        label
+          input(type='radio', name='surveychoice', value='healthy', scenario=i)
+          | Healthy
+      .radio
+        label
+          input(type='radio', name='surveychoice', value='unhealthy', scenario=i)
+          | Unhealthy
+      .radio
+        label
+          input(type='radio', name='surveychoice', value='depends', scenario=i)
+          | Depends
+    input(type='submit', value='Submit')
