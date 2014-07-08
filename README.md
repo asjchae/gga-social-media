@@ -1,6 +1,1 @@
-Civic Hack Day 2014
-=========
-
-#hackforchange
-
-#youmatter
+GG+A Social Media initiatives

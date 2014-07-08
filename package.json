@@ -1,5 +1,5 @@
 {
-  "name": "civic-hack-day",
+  "name": "gga-social-media",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,8 +8,8 @@
   "dependencies": {
     "express": "3.4.4",
     "jade": "*",
-    "supervisor": "~0.6.0",
-    "mongoose": "~3.8.8",
-    "jquery": "~2.1.0"
+    "jquery": "~2.1.0",
+    "simple-twitter": "^1.0.3",
+    "supervisor": "~0.6.0"
   }
 }
