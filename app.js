@@ -7,8 +7,9 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-
+var nodemailer = require('nodemailer');
 var app = express();
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
 
 app.get('/', routes.index);
 

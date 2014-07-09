@@ -5,7 +5,15 @@ var twitter = new twitterAPI(
     process.env.ACCESS_TOKEN,
     process.env.ACCESS_SECRET
 );
-
+var nodemailer = require("nodemailer");
+var mail = require("nodemailer").mail;
+var transport = nodemailer.createTransport("SMTP", {
+    service: "Gmail",
+    auth: {
+        user: process.env.gmailaddress,
+        password: process.env.gmailpassword
+    }
+});
 
 /*
  * GET home page.
@@ -17,7 +25,8 @@ exports.index = function(req, res){
     function(error, data) {
     	tweets = JSON.parse(data);
         for (i=0; i<tweets.length; i++) {
-        	tweetlist.push([tweets[i].created_at, tweets[i].text, tweets[i].id_str]);
+        	var tweetdate = String(tweets[i].created_at).substr(0,19)
+        	tweetlist.push([tweets[i].created_at,tweetdate, tweets[i].text, tweets[i].id_str, "https://twitter.com/GrenzebachGlier/status/"+tweets[i].id_str, "https://twitter.com/intent/retweet?tweet_id="+tweets[i].id_str]);
         }
         
         var today = new Date();
@@ -31,7 +40,31 @@ exports.index = function(req, res){
         	}
         };
 
-        res.send(weekTweets);
+        var emailTweets = ""
+
+        for (i=0; i<weekTweets.length; i++) {
+        	var tweetbody = "<p style=\"font-size:18px; font-family:Arial;\">" + weekTweets[i][2] + "<br></p>"
+        	var tweetdate = "<p style=\"font-size:14px; font-family:Arial;\">" + weekTweets[i][1] +
+        		"—" + "<a href=\"" + weekTweets[i][4] + "\">View Tweet</a> — <a href=\"" + weekTweets[i][5] + "\">Retweet<br><br></a>"
+        	emailTweets = emailTweets + tweetbody + tweetdate
+        }
+
+
+// Stuff for Nodemailer that isn't working reliably.
+
+        // var subject = "Social Media - Week of " + today.getMonth() + "/" + (today.getUTCDate()-7) + "/" + today.getFullYear()
+
+		// mail({
+		//     from: "", // sender address
+		//     to: "", // list of receivers
+		//     subject: subject, // Subject line
+		//     html: emailTweets, // html body
+		//     generateTextFromHTML: true
+		// });
+
+		res.send(emailTweets)
+
+		// res.send("Email Sent!")
 
     });
 };
