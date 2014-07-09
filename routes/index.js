@@ -20,6 +20,10 @@ var transport = nodemailer.createTransport("SMTP", {
  */
 
 exports.index = function(req, res){
+	res.render('index', {title:'GG+A Social Media'});
+};
+
+exports.compile = function(req, res) {
 	var tweetlist = [];
 	twitter.get('statuses/user_timeline/grenzebachglier',
     function(error, data) {
@@ -66,5 +70,5 @@ exports.index = function(req, res){
 
 		// res.send("Email Sent!")
 
-    });
-};
+    });	
+}
